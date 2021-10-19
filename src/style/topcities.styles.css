@@ -1,0 +1,40 @@
+.card {
+  margin: 20px;
+  height: 192px;
+  width: 192px;
+ 
+  box-shadow: 4px 4px 20px rgba(158, 158, 158, 0.2);
+  border-radius: 16px;
+}
+
+.temp {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 44px;
+  line-height: 4px;
+  /* identical to box height, or 37% */
+
+  color: #000000;
+}
+
+.city {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  /* identical to box height, or 150% */
+
+  color: #222831;
+
+  margin-bottom: 10px;
+}
+
+.city-weather {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

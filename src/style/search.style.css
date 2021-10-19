@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search-button {
+  background-color: #000;
+  border-radius: 20%;
+  height: 25px;
+  width: 25px;
+  border: none;
+  padding: 4px;
+  position: absolute;
+  right: 710px;
+  top: 17px;
+}
+
+.search-button:hover {
+  background-color: grey;
+}
+
+input[type="text"] {
+  background: #ffffff;
+  box-shadow: 4px 4px 20px rgba(158, 158, 158, 0.4);
+  border-radius: 16px;
+  width: 230px;
+  height: 20px;
+  border: none;
+  padding: 5px 0px 5px 15px;
+  position: relative;
+  z-index: 0;
+}
+.units-selection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.celcius {
+  background: #222831;
+  border-radius: 24px;
+  height: 30px;
+  width: 30px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.farenheit {
+  color: #000;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 4px 4px 20px rgba(158, 158, 158, 0.4);
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+}
