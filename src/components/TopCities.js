@@ -42,7 +42,8 @@ const TopCities = (props) => {
     const favIndex = await findWeatherIndex(citiesWeather[index].location.name);
     props.onRemoveFavorite(favIndex);
     citiesWeather.splice(index, 1);
-    setCitiesWeather([...citiesWeather])
+    setCitiesWeather([...citiesWeather]);
+setFavorites([...favorites]);
    
   };
 
