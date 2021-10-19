@@ -1,5 +1,5 @@
 import React from "react";
-import { FaRegStar, GrFormClose } from "react-icons/all";
+import { FaRegStar } from "react-icons/all";
 import { Link } from "react-router-dom";
 
 const WeatherCard = ({
@@ -25,10 +25,17 @@ const WeatherCard = ({
       >
         <div>{thermo}</div>
         <div>
-          <FaRegStar color={iconColor} onClick={favoriteHandler} />
-          <GrFormClose onClick={removeTopCity} />
+          <FaRegStar color={iconColor} onClick={favoriteHandler} style={{position: 'relative', top: '20px'}} />
+            
         </div>
+ <div style={{
+          position: 'relative',
+          left: '15px',
+          bottom: '15px'
+        }}>{removeTopCity}</div>
+     
       </div>
+
 
       <p className="temp">
         {temp} <sup>o</sup>

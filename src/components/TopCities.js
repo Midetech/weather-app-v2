@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RiTempHotLine, CgMicrosoft } from "react-icons/all";
+import { RiTempHotLine, CgMicrosoft , IoIosClose} from "react-icons/all";
 import "../style/topcities.styles.css";
 import WeatherCard from "./WeatherCard";
 
@@ -43,10 +43,7 @@ const TopCities = (props) => {
     props.onRemoveFavorite(favIndex);
     citiesWeather.splice(index, 1);
     setCitiesWeather([...citiesWeather])
-    // setCitiesWeather([
-    //   ...citiesWeather.slice(0, index),
-    //   ...citiesWeather.slice(index + 1),
-    // ]);
+   
   };
 
   const findWeatherIndex = (cityName) => {
@@ -64,7 +61,7 @@ const TopCities = (props) => {
         <div className="city-weather">
           {citiesWeather.map((city, i) => (
             <WeatherCard
-              removeTopCity={() => removeCity(i)}
+              removeTopCity={<IoIosClose onClick={() => removeCity(i)} color="red" />}
               favoriteHandler={() => favoriteHandler(city)}
               thermo={<RiTempHotLine color={iconColors[i]} />}
               key={i}

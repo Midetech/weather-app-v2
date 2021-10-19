@@ -41,9 +41,13 @@ const Note = () => {
         placeholder="Note"
       ></textarea>
 
+{
+            note.length ? <p>Click on added note to edit</p> : ''
+          }
       {note.map((nt, i) => (
         <div className="notes">
-          <IoClose onClick={() => removeNote(i)} style={{textAlign: 'right'}} />
+          <IoClose onClick={() => removeNote(i)} style={{position: 'relative', left: '230px'}} />
+
           <p onClick={() => onSelectNote(i)} key={i}>
             {" "}
             {nt}
