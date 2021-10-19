@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { FaRegStar, FaThermometerHalf } from "react-icons/all";
 import TopCities from "../components/TopCities";
@@ -25,6 +25,7 @@ const LandingPage = () => {
     );
 
     const response = await req.json();
+    window.location.replace(`/weather/${response.location.name}`)
   };
 
 
