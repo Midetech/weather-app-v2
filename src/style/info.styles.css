@@ -185,9 +185,10 @@ textarea {
   margin-bottom: 10px;
 }
 
-.notes p{
-  padding:  2px 20px;
+.note{
+  padding:  5px;
   word-wrap: break-word;
+  
 }
 @media screen and (max-width: 414px) {
   .heading {

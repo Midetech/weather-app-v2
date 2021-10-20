@@ -34,26 +34,29 @@ const Note = () => {
   };
   return (
     <div>
+      <p>Hit enter to keep your note</p>
       <textarea
         onChange={(e) => setText(e.target.value)}
         onKeyDown={handleSaveNote}
         value={text}
         placeholder="Note"
       ></textarea>
-
+  <div style={{overflow: 'scroll', maxHeight: '150px'}}>
 {
             note.length ? <p>Click on added note to edit</p> : ''
           }
       {note.map((nt, i) => (
+      
         <div className="notes">
           <IoClose onClick={() => removeNote(i)} style={{position: 'relative', left: '230px'}} />
 
-          <p onClick={() => onSelectNote(i)} key={i}>
+          <p onClick={() => onSelectNote(i)} key={i} className="note">
             {" "}
             {nt}
           </p>
         </div>
-      ))}
+      
+      ))}  </div>
     </div>
   );
 };
