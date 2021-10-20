@@ -44,16 +44,16 @@ const TopCities = (props) => {
     console.log(citiesWeather[index]);
 
     const favIndex = await findWeatherIndex(citiesWeather[index].location.name);
-    if (favIndex > -1) {
+
       console.log(favIndex);
       props.onRemoveFavorite(favIndex);
       citiesWeather.splice(index, 1);
       setCitiesWeather([...citiesWeather]);
       // setFavorites([...favorites]);
-    }
+    
   };
 
-  const findWeatherIndex = (cityName) => {
+  const findWeatherIndex = async (cityName) => {
     // console.log(favorites, cityName);
     return citiesWeather.findIndex(
       ({ location }) => location.name === cityName
