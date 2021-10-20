@@ -19,7 +19,11 @@ const TopCities = (props) => {
   const [favorites, setFavorites] = useState(props.favorites);
 
 
-  const getTopCitiesWeather = async () => {
+ 
+
+  useEffect(() => {
+
+const getTopCitiesWeather = async () => {
     tops.sort();
    await Promise.all(tops.map(top => fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${top}&aqi=no`))).then(responses => 
       Promise.all(responses.map(res => res.json() ))
@@ -28,9 +32,8 @@ const TopCities = (props) => {
     )
   };
 
-  useEffect(() => {
     getTopCitiesWeather();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
   const favoriteHandler = async (data) => {
