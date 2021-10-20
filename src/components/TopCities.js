@@ -6,7 +6,7 @@ import WeatherCard from "./WeatherCard";
 
 const TopCities = (props) => {
   const tops = ["tokyo", "delhi", "shanghai", "sao paulo", "mexico city"];
-  const API_KEY = "eff6f76ace84435fa71163542211710";
+
 
   const bgColors = [
     "linear-gradient(154.6deg, #ffd6c9 2.33%, rgba(255, 255, 255, 0) 83.9%), #ffffff",
@@ -25,7 +25,7 @@ const TopCities = (props) => {
       await Promise.all(
         tops.map((top) =>
           fetch(
-            `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${top}&aqi=no`
+            `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${top}&aqi=no`
           )
         )
       )

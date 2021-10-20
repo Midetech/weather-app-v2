@@ -54,12 +54,11 @@ const WeatherInfo: FC<RouteComponentProps<MatchParams>> = (props) => {
     minute: '',
     ampm: ''
   });
-  const API_KEY = "eff6f76ace84435fa71163542211710";
 
   useEffect(() => {
     const getWeatherInfo = async () => {
       const req = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${
+        `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${
           props.location.search.split("=")[1] || props.match.params.name
         }&aqi=no`
       );

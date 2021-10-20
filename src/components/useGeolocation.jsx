@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 const useGeoLocation = () => {
   const [location, setLocation] = useState({
     loaded: false,
-    currentLoaction: ''
+    coordinates: {
+      lat: '',
+      lng: ''
+    }
   });
 
   const onSuccess = async (location) => {
@@ -17,7 +20,7 @@ const useGeoLocation = () => {
 
     const YOUR_API_KEY = "AIzaSyAUzQUF_UzMdyrNLOwTL8xllfMw1yZaS_s";
     const res = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=${YOUR_API_KEY}`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=${process.env.REACT_APP_API_KEY}`
     );
 
     const result = await res.json();
@@ -26,14 +29,8 @@ const useGeoLocation = () => {
 
       // window.location.replace(`/weather/${currentCity}`)
 
-      setLocation({
-          loaded: true,
-          currentLoaction: currentCity
-      });
-      localStorage.setItem("currentCity", JSON.stringify(currentCity));
-
-     
     }
+
   };
 
   const onError = (error) => {
@@ -55,8 +52,8 @@ const useGeoLocation = () => {
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-  }, [location.currentLoaction]);
-
+  }, []);
+  localStorage.setItem("location", JSON.stringify(location));
   return location;
 };
 
