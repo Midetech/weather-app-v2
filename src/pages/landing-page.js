@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { FaRegStar, FaThermometerHalf } from "react-icons/all";
 import TopCities from "../components/TopCities";
 import WeatherCard from "../components/WeatherCard";
 import "../style/topcities.styles.css";
+import useGeoLocation from "../components/useGeolocation";
 
 const LandingPage = () => {
+
+   useGeoLocation();
   const favs = JSON.parse(localStorage.getItem("favs")) || [];
   console.log(favs);
   // setFavorites(JSON.parse(favs))
