@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { RiTempHotLine, CgMicrosoft, IoIosClose } from "react-icons/all";
 import "../style/topcities.styles.css";
@@ -16,7 +17,7 @@ const TopCities = (props) => {
 
   const iconColors = ["#F05454", "#0085FF", "#F0A500", "#C4C4C4"];
   const [citiesWeather, setCitiesWeather] = useState([]);
-  const [favorites, setFavorites] = useState(props.favorites);
+  // const [favorites, setFavorites] = useState(props.favorites);
 
   useEffect(() => {
     const getTopCitiesWeather = async () => {
@@ -41,16 +42,22 @@ const TopCities = (props) => {
 
   const removeCity = async (index) => {
     console.log(citiesWeather[index]);
+
     const favIndex = await findWeatherIndex(citiesWeather[index].location.name);
-    props.onRemoveFavorite(favIndex);
-    citiesWeather.splice(index, 1);
-    setCitiesWeather([...citiesWeather]);
-    setFavorites([...favorites]);
+    if (favIndex > -1) {
+      console.log(favIndex);
+      props.onRemoveFavorite(favIndex);
+      citiesWeather.splice(index, 1);
+      setCitiesWeather([...citiesWeather]);
+      // setFavorites([...favorites]);
+    }
   };
 
   const findWeatherIndex = (cityName) => {
-    console.log(favorites, cityName);
-    return favorites.findIndex(({ location }) => location.name === cityName);
+    // console.log(favorites, cityName);
+    return citiesWeather.findIndex(
+      ({ location }) => location.name === cityName
+    );
   };
 
   return (

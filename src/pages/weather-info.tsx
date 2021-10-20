@@ -55,7 +55,7 @@ const WeatherInfo: FC<RouteComponentProps<MatchParams>> = (props) => {
       setInfo(response);
     }; 
     getWeatherInfo();
-  }, [ ]);
+  }, [props.location.search, props.match.params.name ]);
 
  
 
