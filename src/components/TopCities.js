@@ -4,6 +4,7 @@ import "../style/topcities.styles.css";
 import WeatherCard from "./WeatherCard";
 
 const TopCities = (props) => {
+  console.log(props.favorites);
   const tops = ["tokyo", "delhi",  "shanghai", "sao paulo", "mexico city"];
   const API_KEY = "eff6f76ace84435fa71163542211710";
 
@@ -16,7 +17,6 @@ const TopCities = (props) => {
 
   const iconColors = ["#F05454", "#0085FF", "#F0A500", "#C4C4C4"];
   const [citiesWeather, setCitiesWeather] = useState([]);
-  const [favorites, setFavorites] = useState(props.favorites);
 
 
   const getTopCitiesWeather = async () => {
@@ -43,19 +43,19 @@ const TopCities = (props) => {
     props.onRemoveFavorite(favIndex);
     citiesWeather.splice(index, 1);
     setCitiesWeather([...citiesWeather])
-   
   };
 
   const findWeatherIndex = (cityName) => {
-    console.log(favorites, cityName);
-    return favorites.findIndex(({ location }) => location.name === cityName);
+    const favs = [...props.favorites]
+    console.log(favs, cityName);
+    return favs.findIndex(({ location }) => location.name === cityName);
   };
 
   return (
     <div>
-      <h1>
-        <CgMicrosoft color="red" /> Top Cities
-      </h1>
+      <div>
+      <CgMicrosoft color="red" /> <h1>Top Cities</h1>
+      </div>
 
       <div className="top-list">
         <div className="city-weather">

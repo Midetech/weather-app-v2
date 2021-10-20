@@ -49,9 +49,10 @@ const LandingPage = () => {
    if (index > -1) {
     console.log(favorites);
     favorites.splice(index, 1);
-    console.log(favorites);
-    setFavorites([...favorites]);
-    localStorage.setItem("favs", JSON.stringify([...favorites]));
+    const newFavs = [...favorites];
+    console.log(newFavs);
+    setFavorites(newFavs);
+    localStorage.setItem("favs", JSON.stringify(newFavs));
    }
   };
 
