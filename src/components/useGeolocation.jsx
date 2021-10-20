@@ -18,7 +18,6 @@ const useGeoLocation = () => {
         },
     });
 
-    const YOUR_API_KEY = "AIzaSyAUzQUF_UzMdyrNLOwTL8xllfMw1yZaS_s";
     const res = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coords.latitude},${location.coords.longitude}&key=${process.env.REACT_APP_API_KEY}`
     );
@@ -28,6 +27,7 @@ const useGeoLocation = () => {
       const currentCity = result.plus_code.compound_code.split(" ")[1];
 
       // window.location.replace(`/weather/${currentCity}`)
+      console.log(currentCity);
 
     }
 

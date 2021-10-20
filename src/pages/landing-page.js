@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { FaRegStar, FaThermometerHalf } from "react-icons/all";
