@@ -14,8 +14,6 @@ const LandingPage = () => {
   const [favorites, setFavorites] = useState(favs);
   const [place, setPlace] = useState("");
 
-
-
   const handleInput = (e) => {
     setPlace(e.target.value);
   };
@@ -76,10 +74,8 @@ const LandingPage = () => {
   const location = useGeoLocation();
   console.log(location);
 
-console.log();
+  console.log();
   const getUserCurrentLocation = async () => {
-
-
     const res = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.coordinates.lat},${location.coordinates.lng}&key=${process.env.REACT_APP_API_KEY}`
     );
@@ -92,10 +88,7 @@ console.log();
     }
   };
   useEffect(() => {
-
-       
-        getUserCurrentLocation();
-      
+    getUserCurrentLocation();
   }, []);
   return (
     <React.Fragment>
