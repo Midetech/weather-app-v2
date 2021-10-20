@@ -25,7 +25,7 @@ const LandingPage = () => {
     );
 
     const response = await req.json();
-    window.location.replace(`/weather/${response.location.name}`)
+window.location.replace(`/weather/${response.location.name}`)
   };
 
 

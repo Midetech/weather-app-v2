@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { RiTempHotLine, CgMicrosoft , IoIosClose} from "react-icons/all";
+import { RiTempHotLine, CgMicrosoft, IoIosClose } from "react-icons/all";
 import "../style/topcities.styles.css";
 import WeatherCard from "./WeatherCard";
 
 const TopCities = (props) => {
-  const tops = ["tokyo", "delhi",  "shanghai", "sao paulo", "mexico city"];
+  const tops = ["tokyo", "delhi", "shanghai", "sao paulo", "mexico city"];
   const API_KEY = "eff6f76ace84435fa71163542211710";
 
   const bgColors = [
@@ -18,19 +18,21 @@ const TopCities = (props) => {
   const [citiesWeather, setCitiesWeather] = useState([]);
   const [favorites, setFavorites] = useState(props.favorites);
 
-
-  const getTopCitiesWeather = async () => {
-    tops.sort();
-   await Promise.all(tops.map(top => fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${top}&aqi=no`))).then(responses => 
-      Promise.all(responses.map(res => res.json() ))
-    ).then(result => 
-      setCitiesWeather(result)
-    )
-  };
-
   useEffect(() => {
+    const getTopCitiesWeather = async () => {
+      tops.sort();
+      await Promise.all(
+        tops.map((top) =>
+          fetch(
+            `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${top}&aqi=no`
+          )
+        )
+      )
+        .then((responses) => Promise.all(responses.map((res) => res.json())))
+        .then((result) => setCitiesWeather(result));
+    };
+
     getTopCitiesWeather();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const favoriteHandler = async (data) => {
@@ -42,8 +44,8 @@ const TopCities = (props) => {
     const favIndex = await findWeatherIndex(citiesWeather[index].location.name);
     props.onRemoveFavorite(favIndex);
     citiesWeather.splice(index, 1);
-    setCitiesWeather([...citiesWeather])
-   
+    setCitiesWeather([...citiesWeather]);
+    setFavorites([...favorites]);
   };
 
   const findWeatherIndex = (cityName) => {
@@ -61,7 +63,9 @@ const TopCities = (props) => {
         <div className="city-weather">
           {citiesWeather.map((city, i) => (
             <WeatherCard
-              removeTopCity={<IoIosClose onClick={() => removeCity(i)} color="red" />}
+              removeTopCity={
+                <IoIosClose onClick={() => removeCity(i)} color="red" />
+              }
               favoriteHandler={() => favoriteHandler(city)}
               thermo={<RiTempHotLine color={iconColors[i]} />}
               key={i}
@@ -71,7 +75,6 @@ const TopCities = (props) => {
               link={`/weather/${city?.location?.name}`}
               iconColor="#9E9E9E"
             />
-
           ))}
         </div>
       </div>
