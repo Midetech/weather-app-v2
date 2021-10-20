@@ -101,7 +101,7 @@ function formatAMPM(date: Date) {
         <p className="updated">Last updated: {info?.current.last_updated}</p>
         <p className="time">
          {
-           time.hour >= 12 ?  <FaMoon /> : <FaSun/>
+           time.hour >= 18 && time.ampm === '' ?  <FaMoon /> : <FaSun/>
          } {`${time.hour}:${time.minute} ${time.ampm}`}
         </p>
       </div>
