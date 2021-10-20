@@ -22,12 +22,12 @@ const useGeoLocation = () => {
     );
 
     const result = await res.json();
-    console.log(result);
+    
     if (result.status === "OK") {
       const currentCity = result.plus_code.compound_code.split(" ")[1];
       
 
-     history.push(`/weather/${currentCity}`)
+     history.push(`/weather/${currentCity?.substring(0, (currentCity?.endsWith(',')) ? currentCity?.length - 1 : '')}`)
 
       localStorage.setItem("currentCity", JSON.stringify(currentCity));
 

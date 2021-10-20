@@ -5,7 +5,7 @@ import "../style/topcities.styles.css";
 import WeatherCard from "./WeatherCard";
 
 const TopCities = (props) => {
-  console.log(props.favorites);
+
   const tops = ["tokyo", "delhi",  "shanghai", "sao paulo", "mexico city"];
 
 
@@ -42,7 +42,7 @@ const TopCities = (props) => {
   };
 
   const removeCity = async (index) => {
-    console.log(citiesWeather[index]);
+   
 
     const favIndex = await findWeatherIndex(citiesWeather[index].location.name);
     props.onRemoveFavorite(favIndex);
@@ -52,7 +52,7 @@ const TopCities = (props) => {
 
   const findWeatherIndex = (cityName) => {
     const favs = [...props.favorites]
-    console.log(favs, cityName);
+   
     return favs.findIndex(({ location }) => location.name === cityName);
   };
 

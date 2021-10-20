@@ -6,14 +6,13 @@ import TopCities from "../components/TopCities";
 import WeatherCard from "../components/WeatherCard";
 import "../style/topcities.styles.css";
 import useGeoLocation from "../components/useGeolocation";
-import  {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 
 const LandingPage = () => {
   const history = useHistory();
-   useGeoLocation();
+  useGeoLocation();
   const favs = JSON.parse(localStorage.getItem("favs")) || [];
-  console.log(favs);
-  // setFavorites(JSON.parse(favs))
+
   const [favorites, setFavorites] = useState(favs);
   const [place, setPlace] = useState("");
 
@@ -49,18 +48,16 @@ const LandingPage = () => {
   };
 
   const removeFromFavorites = (index) => {
-   if (index > -1) {
-    console.log(favorites);
-    favorites.splice(index, 1);
-    const newFavs = [...favorites];
-    console.log(newFavs);
-    setFavorites(newFavs);
-    localStorage.setItem("favs", JSON.stringify(newFavs));
-   }
+    if (index > -1) {
+      favorites.splice(index, 1);
+      const newFavs = [...favorites];
+
+      setFavorites(newFavs);
+      localStorage.setItem("favs", JSON.stringify(newFavs));
+    }
   };
 
   const findWeatherIndex = (cityName) => {
-    console.log(favorites, cityName);
     return favorites.findIndex(({ location }) => location.name === cityName);
   };
 
@@ -73,17 +70,14 @@ const LandingPage = () => {
 
   const iconColors = ["#F05454", "#0085FF", "#F0A500", "#C4C4C4"];
 
- 
   return (
     <React.Fragment>
       <SearchBar onChange={handleInput} getWeather={consolePlace} />
       <div className="favorites">
-      <div className="fav">
-        <FaRegStar color="#F0A500" size="20px" /> 
-      <p className="fav-title">
-          Favourites
-        </p>
-      </div>
+        <div className="fav">
+          <FaRegStar color="#F0A500" size="20px" />
+          <p className="fav-title">Favourites</p>
+        </div>
 
         <div className="favorite-list">
           {favorites?.length ? (
