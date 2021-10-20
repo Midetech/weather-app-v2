@@ -5,7 +5,8 @@ import "../style/topcities.styles.css";
 import WeatherCard from "./WeatherCard";
 
 const TopCities = (props) => {
-  const tops = ["tokyo", "delhi", "shanghai", "sao paulo", "mexico city"];
+  console.log(props.favorites);
+  const tops = ["tokyo", "delhi",  "shanghai", "sao paulo", "mexico city"];
 
 
   const bgColors = [
@@ -44,27 +45,22 @@ const TopCities = (props) => {
     console.log(citiesWeather[index]);
 
     const favIndex = await findWeatherIndex(citiesWeather[index].location.name);
-
-      console.log(favIndex);
-      props.onRemoveFavorite(favIndex);
-      citiesWeather.splice(index, 1);
-      setCitiesWeather([...citiesWeather]);
-      // setFavorites([...favorites]);
-    
+    props.onRemoveFavorite(favIndex);
+    citiesWeather.splice(index, 1);
+    setCitiesWeather([...citiesWeather])
   };
 
-  const findWeatherIndex = async (cityName) => {
-    // console.log(favorites, cityName);
-    return citiesWeather.findIndex(
-      ({ location }) => location.name === cityName
-    );
+  const findWeatherIndex = (cityName) => {
+    const favs = [...props.favorites]
+    console.log(favs, cityName);
+    return favs.findIndex(({ location }) => location.name === cityName);
   };
 
   return (
     <div>
-      <h1>
-        <CgMicrosoft color="red" /> Top Cities
-      </h1>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <CgMicrosoft color="red" size="28px" /> <h1 style={{paddingLeft: '10px'}}>Top Cities</h1>
+      </div>
 
       <div className="top-list">
         <div className="city-weather">
