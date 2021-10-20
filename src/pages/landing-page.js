@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { FaRegStar, FaThermometerHalf } from "react-icons/all";
 import TopCities from "../components/TopCities";
 import WeatherCard from "../components/WeatherCard";
 import "../style/topcities.styles.css";
 import useGeoLocation from "../components/useGeolocation";
+import  {useHistory} from 'react-router';
 
 const LandingPage = () => {
-
+  const history = useHistory();
    useGeoLocation();
   const favs = JSON.parse(localStorage.getItem("favs")) || [];
   console.log(favs);
   // setFavorites(JSON.parse(favs))
   const [favorites, setFavorites] = useState(favs);
   const [place, setPlace] = useState("");
-
-  const API_KEY = "eff6f76ace84435fa71163542211710";
 
   const handleInput = (e) => {
     setPlace(e.target.value);
@@ -24,17 +24,17 @@ const LandingPage = () => {
   const consolePlace = async (e) => {
     e.preventDefault();
     const req = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${place}&aqi=no`
+      `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${place}&aqi=no`
     );
 
     const response = await req.json();
+    history.push(`/weather/${response.location.name}`);
   };
-
 
   const addRemoveFavoriteHandler = async (data) => {
     const weatherIndex = await findWeatherIndex(data.location.name);
     if (weatherIndex > -1) {
-        removeFromFavorites(weatherIndex)
+      removeFromFavorites(weatherIndex);
     } else {
       addToFavorites(data);
     }
@@ -72,6 +72,8 @@ const LandingPage = () => {
   ];
 
   const iconColors = ["#F05454", "#0085FF", "#F0A500", "#C4C4C4"];
+
+ 
   return (
     <React.Fragment>
       <SearchBar onChange={handleInput} getWeather={consolePlace} />

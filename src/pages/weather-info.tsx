@@ -4,6 +4,7 @@ import {
   FaMoon,
   RiTempHotLine,
   FaWind,
+  FaSun,
   MdOutlineWaterDrop,
 } from "react-icons/all";
 import "../style/info.styles.css";
@@ -13,6 +14,13 @@ import Note from "../components/Note";
 
 interface MatchParams {
   name: string;
+}
+interface Date {
+ 
+  getHours(): any;
+
+  getMinutes(): any;
+
 }
 
 interface Response {
@@ -41,22 +49,45 @@ interface Response {
 
 const WeatherInfo: FC<RouteComponentProps<MatchParams>> = (props) => {
   const [info, setInfo] = useState<Response>();
-  const API_KEY = "eff6f76ace84435fa71163542211710";
+  const [time, setTime] = useState<any>({
+    hour: '',
+    minute: '',
+    ampm: ''
+  });
 
   useEffect(() => {
+    const getWeatherInfo = async () => {
+      const req = await fetch(
+        `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${
+          props.location.search.split("=")[1] || props.match.params.name
+        }&aqi=no`
+      );
+      const response = await req.json();
+  
+      setInfo(response);
+    }; 
     getWeatherInfo();
-  }, []);
+    formatAMPM(new Date())
+  }, [props.location.search, props.match.params.name ]);
 
-  const getWeatherInfo = async () => {
-    const req = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${
-        props.location.search.split("=")[1] || props.match.params.name
-      }&aqi=no`
-    );
-    const response = await req.json();
+ 
+function formatAMPM(date: Date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
 
-    setInfo(response);
-  };
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  // minutes = minutes < 10 ? '0'+minutes : minutes;
+  // var strTime = hours + ':' + minutes + ' ' + ampm;
+ setTime({
+   hour: hours,
+   minute: minutes,
+   ampm: ampm
+ })
+}
+
+
 
   return (
     <div className="container">
@@ -68,7 +99,9 @@ const WeatherInfo: FC<RouteComponentProps<MatchParams>> = (props) => {
         </p>
         <p className="updated">Last updated: {info?.current.last_updated}</p>
         <p className="time">
-          <FaMoon /> 10:09PM
+         {
+           time.hour >= 18 && time.ampm === '' ?  <FaMoon /> : <FaSun/>
+         } {`${time.hour}:${time.minute} ${time.ampm}`}
         </p>
       </div>
       <div className="weather-info">

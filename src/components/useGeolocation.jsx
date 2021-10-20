@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import  {useHistory} from 'react-router'
+import  {useHistory} from 'react-router';
 
 const useGeoLocation = () => {
   const history = useHistory();
@@ -10,13 +10,7 @@ const useGeoLocation = () => {
   });
 
   const onSuccess = async (location) => {
-    setLocation({
-        loaded: true,
-        coordinates: {
-            lat: location.coords.latitude,
-            lng: location.coords.longitude,
-        },
-    });
+   
 
     if (localStorage.getItem('currentCity')) {
       return;
@@ -33,7 +27,7 @@ const useGeoLocation = () => {
       const currentCity = result.plus_code.compound_code.split(" ")[1];
       
 
-     history.push(`/weather/${currentCity}`);
+     history.push(`/weather/${currentCity}`)
 
       localStorage.setItem("currentCity", JSON.stringify(currentCity));
 
