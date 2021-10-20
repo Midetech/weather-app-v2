@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { FaRegStar, FaThermometerHalf } from "react-icons/all";
 import TopCities from "../components/TopCities";
@@ -78,9 +78,12 @@ const LandingPage = () => {
     <React.Fragment>
       <SearchBar onChange={handleInput} getWeather={consolePlace} />
       <div className="favorites">
-        <p>
-          <FaRegStar color="#F0A500" /> Favourites
+      <div className="fav">
+        <FaRegStar color="#F0A500" size="20px" /> 
+      <p className="fav-title">
+          Favourites
         </p>
+      </div>
 
         <div className="favorite-list">
           {favorites?.length ? (
@@ -101,7 +104,7 @@ const LandingPage = () => {
               </div>
             </div>
           ) : (
-            <p>No favourites added Yet.</p>
+            <p className="no-fav">No favourites added Yet.</p>
           )}
         </div>
 

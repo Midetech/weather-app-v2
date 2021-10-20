@@ -58,8 +58,8 @@ const TopCities = (props) => {
 
   return (
     <div>
-      <div>
-      <CgMicrosoft color="red" /> <h1>Top Cities</h1>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <CgMicrosoft color="red" size="28px" /> <h1 style={{paddingLeft: '10px'}}>Top Cities</h1>
       </div>
 
       <div className="top-list">
